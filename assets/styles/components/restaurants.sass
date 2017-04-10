@@ -1,0 +1,73 @@
+/*
+  Restaurants
+  ============================== */
+
+.view-restaurants
+  z-index: 1
+
+  .list-restaurants
+    > li
+      position: relative
+      padding: $base $base $base 80px
+      border-bottom: 1px solid $colorGreyAlt
+
+      &:before
+        +pseudo
+        +abs(15px center)
+        width: 50px
+        height: 50px
+        background-repeat: no-repeat
+        background-position: center
+        background-size: contain
+        border: 1px solid transparent
+        border-radius: $base
+
+    .featured
+      .name:before
+        +pseudo(inline-block)
+
+    .name
+      display: block
+      font-weight: $fontSemiBold
+      
+    .address
+      display: block
+      font-size: $fontS
+    
+    .info
+      +align(left center, 5px)
+      font-size: $fontXS
+      font-weight: $fontLight
+
+      .distance
+        padding-left: 12px
+        background: url(../img/distance.png) no-repeat left center / auto 12px
+    
+    // Restaurants
+    .chez-corkscrew
+      border-bottom: 5px solid $colorGreyAlt
+
+      &:before
+        border-color: $colorBurgundyAlt
+        background-image: url(../img/restaurants/chez-corkscrew.png)
+        background-size: auto 65%
+    
+    .cote-brasserie:before
+      background-image: url(../img/restaurants/cote.png)
+      background-size: auto 80%
+    
+    .iberica-canary-wharf:before
+      background-image: url(../img/restaurants/iberica.png)
+      background-size: auto 80%
+    
+    .angelus-bar:before
+      background-image: url(../img/restaurants/angelus.png)
+      background-size: auto 80%
+    
+    .the-delaunay:before
+      background-image: url(../img/restaurants/delaunay.png)
+      background-size: 70% auto
+    
+    .the-london-edition:before
+      background-image: url(../img/restaurants/shop.png)
+      background-size: auto 60%
