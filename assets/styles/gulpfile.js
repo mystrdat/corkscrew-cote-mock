@@ -7,6 +7,7 @@
 const gulp         = require('gulp');
 const rename       = require('gulp-rename');
 const sass         = require('gulp-sass');
+const stylus       = require('gulp-stylus');
 const postCSS      = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cleanCSS     = require('gulp-clean-css');
@@ -19,9 +20,9 @@ const buildName = 'styles';
 
 // Compile with inline map for dev
 gulp.task('build-dev', () => {
-  return gulp.src(srcPath + 'main.sass')
+  return gulp.src(srcPath + 'main.styl')
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(stylus())
     .pipe(sourcemaps.write())
     .pipe(rename(buildName + '.css'))
     .pipe(gulp.dest(buildPath));
@@ -29,8 +30,8 @@ gulp.task('build-dev', () => {
 
 // Compile minified and optimized for prod
 gulp.task('build-prod', () => {
-  return gulp.src(srcPath + 'main.sass')
-    .pipe(sass().on('error', sass.logError))
+  return gulp.src(srcPath + 'main.styl')
+    .pipe(stylus())
     .pipe(postCSS([ autoprefixer({ browsers: ['last 2 version'] }) ]))
     .pipe(cleanCSS({ keepSpecialComments: 0, mergeMediaQueries: true }))
     .pipe(rename(buildName + '.min.css'))
@@ -39,10 +40,10 @@ gulp.task('build-prod', () => {
 
 // Watchers
 gulp.task('watch-dev', () => {
-  gulp.watch([srcPath + '**/*.sass', srcPath + '**/*.scss'], ['build-dev']);
+  gulp.watch([srcPath + '**/*.styl', srcPath + '**/*.styl'], ['build-dev']);
 });
 gulp.task('watch-prod', () => {
-  gulp.watch([srcPath + '**/*.sass', srcPath + '**/*.scss'], ['build-prod']);
+  gulp.watch([srcPath + '**/*.styl', srcPath + '**/*.styl'], ['build-prod']);
 });
 
 // Tasks

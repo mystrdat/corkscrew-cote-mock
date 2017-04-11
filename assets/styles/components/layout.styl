@@ -3,7 +3,10 @@
   ============================== */
 
 body
-  +align(left top, 0, column)
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-start
 
   > *
     width: 100%
@@ -24,7 +27,9 @@ header
       padding: $base 0
 
     .back
-      +abs(left bottom)
+      position: absolute
+      left: 0
+      bottom: 0
       padding-left: 25px
       background: url(../img/back.png) no-repeat $base center / auto 12px
       opacity: 1
@@ -35,18 +40,27 @@ header
         opacity: 0
 
     .title
-      +abs(center bottom)
+      position: absolute
+      left: 50%
+      bottom: 0
+      transform: translateX(-50%)
     
     .history
-      +abs(right bottom)
-      +hide-text
+      position: absolute
+      right: 0
+      bottom: 0
+      text-indent: -9999px
+      white-space: nowrap
+      overflow hidden
       line-height: 40px
       width: 40px
       padding: 0
       background: url(../img/history.png) no-repeat center / auto 20px
   
   .location
-    +align(center center)
+    display: flex
+    justify-content: center
+    align-items: center
     height: 0
     overflow: hidden
     background-color: $colorBurgundy
@@ -83,8 +97,14 @@ main
   overflow: hidden
 
 .view
-  +abs(fill)
-  +scrollable
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  overflow: auto
+  will-change: scroll-position
+  -webkit-overflow-scrolling: touch
   background-color: #fff
   opacity: 0
 
@@ -118,7 +138,9 @@ main
       animation-name: viewDishesOut
 
 footer
-  +fix(bottom)
+  position: fixed
+  left: 0
+  bottom: 0
   width: 100%
   padding: $base
   background-color: #fff
@@ -135,7 +157,7 @@ footer
 
   .selected
     display: block
-    padding: $base 1.5*$base $base 40px
+    padding: $base 15px $base 40px
     background-image: url(../img/counter.png), url(../img/up-chevron.svg)
     background-repeat: no-repeat
     background-position: left center, right 10px center
@@ -147,6 +169,6 @@ footer
     font-weight: $fontSemiBold
     text-transform: uppercase
     color: #fff
-    padding: $base 1.5*$base
+    padding: $base 15px
     border-radius: 5px
     background: $colorBurgundyAlt url(../img/giefwine.png) no-repeat right 15px center / auto 12px

@@ -12,8 +12,11 @@
       border-bottom: 1px solid $colorGreyAlt
 
       &:before
-        +pseudo
-        +abs(15px center)
+        content: ''
+        position: absolute
+        left: 15px
+        top: 50%
+        transform: translateY(-50%)
         width: 50px
         height: 50px
         background-repeat: no-repeat
@@ -22,9 +25,9 @@
         border: 1px solid transparent
         border-radius: $base
 
-    .featured
-      .name:before
-        +pseudo(inline-block)
+    .featured .name:before
+      content: ''
+      display: inline-block
 
     .name
       display: block
@@ -35,9 +38,14 @@
       font-size: $fontS
     
     .info
-      +align(left center, 5px)
+      display: flex
+      justify-content: flex-start
+      align-items: center
       font-size: $fontXS
       font-weight: $fontLight
+
+      > *:not(:last-child)
+        margin-right: 5px
 
       .distance
         padding-left: 12px
